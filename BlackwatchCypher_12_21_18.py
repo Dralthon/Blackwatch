@@ -12,6 +12,27 @@ solution1 = ""
 solution2 = ""
 solution3 = ""
 
-for countCheck in checkList
-	for countShift in shiftList
-		solution1 = solution1 + encryption1[0]
+countCheck = 0
+countShift = 0
+countEncrypt = 0
+
+def decrypt1(countEncrypt, countShift, countCheck):
+    count = 0
+    while count <= len(checkList) - 1:
+        if encryption1[countEncrypt] == checkList[count]:
+            letter = count
+        count = count + 1
+    index = count + countShift
+    if index > 41:
+        index = index - 42
+    return checkList[index]
+
+while countCheck <= len(checkList) - 1:
+    while countShift <= len(shiftList) - 1:
+        while countEncrypt <= len(encryption1) - 1:
+            solution1 = solution1 + decrypt1(countEncrypt, countShift, countCheck)
+            countEncrypt = countEncrypt + 1
+        print(solution1)
+        solution1 = ""
+        countShift = countShift + 1
+    countCheck = countCheck + 1
